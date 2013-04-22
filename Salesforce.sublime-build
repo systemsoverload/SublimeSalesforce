@@ -1,0 +1,3 @@
+{
+	"cmd": ["ant","-f","$project_path/local-build.xml", "deployCode"]
+}
