@@ -1,6 +1,7 @@
 {
 	"extensions":
 	[
-		"page"
+		"page",
+		"component"
 	]
 }
