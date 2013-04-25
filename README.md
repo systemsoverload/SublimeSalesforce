@@ -82,4 +82,4 @@ $ git clone git://github.com/systemsoverload/SublimeSalesforce.git
 
 ### Todo
 * Schema Explorer
-* Clean-up 'Execute Anonymous'
+* Clean-up 'Execute Anonymous' ( Very hacked together right now, but it will all change with ST3 anyway )
