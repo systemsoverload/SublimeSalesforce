@@ -4,8 +4,19 @@ class ExecuteAnonymousCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         self.view.set_status('Salesforce - Execute Anonymous', "Anonymous Code Execution.")
 
-        username = 'tj.kells@streetlinks.com.tj' #'SALESFORCE_USERNAME'
-        password = '0mega47266XX'                #'SALESFORCE_PASSWORD'
+        build_properties_path = "{0}/local-build.properties".format(sublime.active_window().folders()[0])
+        build_properties_raw = [line.strip() for line in open(build_properties_path)]
+
+        build_properties = {}
+        for idx, prop in enumerate(build_properties_raw):
+            if prop and not prop.startswith('#'):
+                build_properties[prop.split('=')[0].strip()] = prop.split('=')[1].strip()
+
+        print(build_properties.get('sf.username'))
+        print(build_properties.get('sf.password'))
+
+        username = build_properties.get('sf.username')
+        password = build_properties.get('sf.password')
 
         loginEnv = '<?xml version="1.0" encoding="utf-8" ?> \
                 <env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" \
