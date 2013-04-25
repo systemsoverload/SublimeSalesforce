@@ -12,9 +12,6 @@ class ExecuteAnonymousCommand(sublime_plugin.TextCommand):
             if prop and not prop.startswith('#'):
                 build_properties[prop.split('=')[0].strip()] = prop.split('=')[1].strip()
 
-        print(build_properties.get('sf.username'))
-        print(build_properties.get('sf.password'))
-
         username = build_properties.get('sf.username')
         password = build_properties.get('sf.password')
 
