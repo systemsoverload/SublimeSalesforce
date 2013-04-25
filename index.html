@@ -50,12 +50,11 @@
 
 <h4>Build Tool/Deployment</h4>
 
-<pre><code>Java JDK ( http://java.sun.com/javase/downloads/index.jsp )
-Apache Ant ( http://ant.apache.org/ )
-Force.com Migration Tool ( http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm )
-</code></pre>
-
-<h3>Salesforce Setup</h3>
+<ul>
+<li>Java JDK ( <a href="http://java.sun.com/javase/downloads/index.jsp">http://java.sun.com/javase/downloads/index.jsp</a> )</li>
+<li>Apache Ant ( <a href="http://ant.apache.org/">http://ant.apache.org/</a> )</li>
+<li>Force.com Migration Tool ( <a href="http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm">http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm</a> )</li>
+</ul><h3>Salesforce Setup</h3>
 
 <p>For Ant deployment you will be required to maintain three files, package.xml, build.xml, and build.properties.
 For our dev stack these files are used by continuous integration scripts. So rather than trying to have each dev
@@ -78,11 +77,10 @@ sf.serverurl = https://test.salesforce.com
 <p>local-build.xml - ex.</p>
 
 <pre><code>&lt;target name="deployCode"&gt;
-
-  &lt;sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"&gt;
-    &lt;runTest&gt;TestClassToRun&lt;/runTest&gt;
-    &lt;runTest&gt;AnotherOne&lt;/runTest&gt;
-  &lt;/sf:deploy&gt;
+ &lt;sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"&gt;
+  &lt;runTest&gt;TestClassToRun&lt;/runTest&gt;
+  &lt;runTest&gt;AnotherOne&lt;/runTest&gt;
+ &lt;/sf:deploy&gt;
 &lt;/target&gt;
 </code></pre>
 
