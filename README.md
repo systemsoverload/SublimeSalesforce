@@ -1,3 +1,10 @@
+## SublimeSalesforce Features
+* Salesforce Deployment With ST2 Build System + Apache Ant
+* Anonymous Code Execution
+* Working Syntax Highlighter ( Thanks for especially sucking on this one Force.com IDE )
+
+
+## Setup
 ### Pre-requisites
 #### Build Tool/Deployment
 	Java JDK ( http://java.sun.com/javase/downloads/index.jsp )
