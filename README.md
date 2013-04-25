@@ -33,12 +33,18 @@ sf.serverurl = https://test.salesforce.com
 
 local-build.xml - ex.
 ```
-<target name="deployCode">
- <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src">
-  <runTest>TestClassToRun</runTest>
-  <runTest>AnotherOne</runTest>
- </sf:deploy>
-</target>
+<project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce">
+
+ <property file="local-build.properties"/>
+ <property environment="env"/>
+
+ <target name="deployCode">
+  <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src">
+   <runTest>TestClassToRun</runTest>
+   <runTest>AnotherOne</runTest>
+  </sf:deploy>
+ </target>
+</project>
 ```
 
 package.xml - ex.
