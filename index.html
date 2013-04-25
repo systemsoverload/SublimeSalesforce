@@ -76,12 +76,18 @@ sf.serverurl = https://test.salesforce.com
 
 <p>local-build.xml - ex.</p>
 
-<pre><code>&lt;target name="deployCode"&gt;
- &lt;sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"&gt;
-  &lt;runTest&gt;TestClassToRun&lt;/runTest&gt;
-  &lt;runTest&gt;AnotherOne&lt;/runTest&gt;
- &lt;/sf:deploy&gt;
-&lt;/target&gt;
+<pre><code>&lt;project name="Sample usage of Salesforce Ant tasks" default="test" basedir="." xmlns:sf="antlib:com.salesforce"&gt;
+
+ &lt;property file="local-build.properties"/&gt;
+ &lt;property environment="env"/&gt;
+
+ &lt;target name="deployCode"&gt;
+  &lt;sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"&gt;
+   &lt;runTest&gt;TestClassToRun&lt;/runTest&gt;
+   &lt;runTest&gt;AnotherOne&lt;/runTest&gt;
+  &lt;/sf:deploy&gt;
+ &lt;/target&gt;
+&lt;/project&gt;
 </code></pre>
 
 <p>package.xml - ex.</p>
@@ -121,7 +127,7 @@ $ git clone git://github.com/systemsoverload/SublimeSalesforce.git
 
 <ul>
 <li>Schema Explorer</li>
-<li>Clean-up 'Execute Anonymous'</li>
+<li>Clean-up 'Execute Anonymous' ( Very hacked together right now, but it will all change with ST3 anyway )</li>
 </ul>
       </section>
 
