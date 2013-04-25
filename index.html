@@ -38,32 +38,93 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>Welcome to GitHub Pages.</h3>
+        <h2>SublimeSalesforce Features</h2>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<ul>
+<li>Salesforce Deployment With ST2 Build System + Apache Ant</li>
+<li>Anonymous Code Execution</li>
+<li>Working Syntax Highlighter ( Thanks for especially sucking on this one Force.com IDE )</li>
+</ul><h2>Setup</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h3>Pre-requisites</h3>
+
+<h4>Build Tool/Deployment</h4>
+
+<pre><code>Java JDK ( http://java.sun.com/javase/downloads/index.jsp )
+Apache Ant ( http://ant.apache.org/ )
+Force.com Migration Tool ( http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm )
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>Salesforce Setup</h3>
 
-<h3>Designer Templates</h3>
+<p>For Ant deployment you will be required to maintain three files, package.xml, build.xml, and build.properties.
+For our dev stack these files are used by continuous integration scripts. So rather than trying to have each dev
+modify these files we opted for everyone to instead maintain their own local (local-build.xml, local-build.properties)
+versions of these files. These are the files targeted by the build system in this package.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>TL;DR</p>
 
-<h3>Rather Drive Stick?</h3>
+<p>You will need to have the following three files in the project directory for the build system to work:</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>local-build.properties - ex.</p>
 
-<h3>Authors and Contributors</h3>
+<pre><code># build.properties
+# My Sandbox
+sf.username = mysalesforcename@mydomain.com.sandboxname
+sf.password = mysalesforcepassword
+sf.serverurl = https://test.salesforce.com
+</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>local-build.xml - ex.</p>
 
-<h3>Support or Contact</h3>
+<pre><code>&lt;target name="deployCode"&gt;
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+  &lt;sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" deployRoot="src"&gt;
+    &lt;runTest&gt;TestClassToRun&lt;/runTest&gt;
+    &lt;runTest&gt;AnotherOne&lt;/runTest&gt;
+  &lt;/sf:deploy&gt;
+&lt;/target&gt;
+</code></pre>
+
+<p>package.xml - ex.</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Package xmlns="http://soap.sforce.com/2006/04/metadata"&gt;
+    &lt;types&gt;
+        &lt;members&gt;TestClassToRun&lt;/member&gt;
+        &lt;members&gt;AnotherOne&lt;/member&gt;
+        &lt;name&gt;ApexClass&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;types&gt;
+        &lt;members&gt;SomeTrigger&lt;/members&gt;
+        &lt;name&gt;ApexTrigger&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;types&gt;
+        &lt;members&gt;Lead.CleanPhone__c&lt;/members&gt;
+        &lt;name&gt;CustomField&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;types&gt;
+        &lt;members&gt;My_Custom_Object__c&lt;/members&gt;
+        &lt;name&gt;CustomObject&lt;/name&gt;
+    &lt;/types&gt;
+    &lt;version&gt;27.0&lt;/version&gt;
+&lt;/Package&gt;
+</code></pre>
+
+<p>Refer to Salesforce documentation for any questions/further information about these files.</p>
+
+<h3>Sublime Package Setup</h3>
+
+<pre><code>$ cd your_st2_directory/Packages
+$ git clone git://github.com/systemsoverload/SublimeSalesforce.git
+</code></pre>
+
+<h3>Todo</h3>
+
+<ul>
+<li>Schema Explorer</li>
+<li>Clean-up 'Execute Anonymous'</li>
+</ul>
       </section>
 
     </div>
