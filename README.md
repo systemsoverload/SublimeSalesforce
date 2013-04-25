@@ -7,9 +7,9 @@
 ## Setup
 ### Pre-requisites
 #### Build Tool/Deployment
-*Java JDK ( http://java.sun.com/javase/downloads/index.jsp )
-*Apache Ant ( http://ant.apache.org/ )
-*Force.com Migration Tool ( http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm )
+* Java JDK ( http://java.sun.com/javase/downloads/index.jsp )
+* Apache Ant ( http://ant.apache.org/ )
+* Force.com Migration Tool ( http://www.salesforce.com/us/developer/docs/apexcode/Content/apex_deploying_ant.htm )
 
 ### Salesforce Setup
 For Ant deployment you will be required to maintain three files, package.xml, build.xml, and build.properties.
